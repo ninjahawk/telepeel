@@ -1,0 +1,104 @@
+<title>telepeel</title>
+<style>
+  .tp-stage {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 50% 40%, rgba(40, 110, 225, 0.55), transparent 60%),
+      radial-gradient(circle at 15% 85%, rgba(10, 42, 102, 0.7), transparent 55%),
+      linear-gradient(160deg, #12439e, #0a2a66);
+  }
+  .tp-stage::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.6px);
+    background-size: 30px 30px;
+  }
+  .tp-stage::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 260px rgba(3, 15, 45, 0.75);
+  }
+
+  .banana {
+    position: relative;
+    height: 62vh;
+    max-height: 620px;
+    width: auto;
+    transform-origin: 50% 88%;
+    animation: dance 1.05s ease-in-out infinite;
+    filter: drop-shadow(0 24px 26px rgba(0, 0, 0, 0.4));
+  }
+
+  @keyframes dance {
+    0%   { transform: translateY(0)     rotate(-8deg) scale(1, 1); }
+    25%  { transform: translateY(-6%)   rotate(7deg)  scale(0.97, 1.05); }
+    50%  { transform: translateY(0)     rotate(8deg)  scale(1.05, 0.95); }
+    75%  { transform: translateY(-6%)   rotate(-7deg) scale(0.97, 1.05); }
+    100% { transform: translateY(0)     rotate(-8deg) scale(1, 1); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .banana { animation: none; }
+  }
+</style>
+
+<div class="tp-stage">
+  <svg class="banana" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dancing banana">
+    <defs>
+      <linearGradient id="peel" x1="0.1" y1="0" x2="0.9" y2="1">
+        <stop offset="0%"  stop-color="#fff0a0" />
+        <stop offset="45%" stop-color="#ffd633" />
+        <stop offset="100%" stop-color="#f2b005" />
+      </linearGradient>
+      <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fff6c8" />
+        <stop offset="100%" stop-color="#ffdf6b" />
+      </linearGradient>
+    </defs>
+
+    <path d="M60 118
+             C 82 212, 116 248, 150 248
+             C 184 248, 218 212, 240 118
+             C 236 138, 230 150, 222 158
+             C 206 186, 180 200, 150 200
+             C 120 200, 94 186, 78 158
+             C 70 150, 64 138, 60 118 Z"
+          fill="url(#peel)" stroke="#c9860a" stroke-width="4" stroke-linejoin="round" />
+
+    <path d="M92 178 C 110 218, 130 236, 150 236
+             C 170 236, 190 218, 208 178
+             C 190 206, 172 220, 150 220
+             C 128 220, 110 206, 92 178 Z"
+          fill="url(#belly)" opacity="0.8" />
+
+    <path d="M150 240 C 150 232, 150 222, 150 214" fill="none" stroke="#e0a413" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <path d="M104 214 C 98 196, 92 176, 88 150" fill="none" stroke="#e0a413" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+    <path d="M196 214 C 202 196, 208 176, 212 150" fill="none" stroke="#e0a413" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+
+    <path d="M84 150 C 96 176, 118 192, 142 196" fill="none" stroke="#fffbe6" stroke-width="7" stroke-linecap="round" opacity="0.7"/>
+
+    <path d="M60 118 C 52 100, 56 82, 70 76 C 78 72, 86 76, 88 84 L 78 104 C 72 108, 66 112, 60 118 Z"
+          fill="#8a6a24" stroke="#5c4416" stroke-width="3" stroke-linejoin="round" />
+
+    <path d="M240 118 c 8 -8, 18 -8, 20 2 c 2 8, -6 16, -16 14 c -2 -6, -4 -12, -4 -16 Z" fill="#8a5a12" />
+
+    <g>
+      <ellipse cx="132" cy="196" rx="7" ry="8.5" fill="#3a2a05" />
+      <ellipse cx="168" cy="196" rx="7" ry="8.5" fill="#3a2a05" />
+      <circle cx="134" cy="193" r="2.4" fill="#fff" />
+      <circle cx="170" cy="193" r="2.4" fill="#fff" />
+      <path d="M130 216 q 20 20, 40 0" fill="none" stroke="#3a2a05" stroke-width="5" stroke-linecap="round" />
+      <circle cx="114" cy="210" r="7" fill="#ff9a6b" opacity="0.5" />
+      <circle cx="186" cy="210" r="7" fill="#ff9a6b" opacity="0.5" />
+    </g>
+  </svg>
+</div>

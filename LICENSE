@@ -22,5 +22,17 @@ SOFTWARE.
 
 ---
 
-The banana artwork is from Microsoft's Fluent Emoji
-(https://github.com/microsoft/fluentui-emoji), also licensed under MIT.
+The banana artwork is drawn from six open emoji sets, each of which retains its
+own license:
+
+- Fluent Emoji (3D, Color, Flat) — Microsoft — MIT
+  https://github.com/microsoft/fluentui-emoji
+- Twemoji — Twitter / jdecked — graphics under CC-BY 4.0
+  https://github.com/jdecked/twemoji
+- OpenMoji — CC BY-SA 4.0
+  https://openmoji.org/
+- Noto Emoji — Google — Apache 2.0
+  https://github.com/googlefonts/noto-emoji
+
+The MIT license above applies to the telepeel project code; each embedded
+banana asset remains under the license listed for its source.

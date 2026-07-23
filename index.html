@@ -3,194 +3,121 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>telepeel — the dancing banana</title>
+<title>telepeel</title>
 <style>
-  :root {
-    --blue-1: #0a2a66;
-    --blue-2: #12439e;
-    --blue-3: #1e63d6;
-    --accent: #ffd23f;
-  }
-
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html, body { height: 100%; }
+  html, body { height: 100%; overflow: hidden; }
 
   body {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    /* Professional deep-blue gradient */
+    /* Professional deep-blue padded background, full screen */
     background:
-      radial-gradient(circle at 30% 20%, rgba(30, 99, 214, 0.55), transparent 55%),
-      radial-gradient(circle at 80% 80%, rgba(10, 42, 102, 0.65), transparent 60%),
-      linear-gradient(160deg, var(--blue-2), var(--blue-1));
-    color: #eaf1ff;
+      radial-gradient(circle at 50% 40%, rgba(40, 110, 225, 0.55), transparent 60%),
+      radial-gradient(circle at 15% 85%, rgba(10, 42, 102, 0.7), transparent 55%),
+      linear-gradient(160deg, #12439e, #0a2a66);
   }
 
-  /* The "padded" panel — soft quilted card the banana sits on */
-  .stage {
-    position: relative;
-    width: min(560px, 92vw);
-    padding: 3.5rem 2.5rem 3rem;
-    border-radius: 28px;
-    text-align: center;
-    background: linear-gradient(160deg, #1b4fb0, #0f347f);
-    /* soft padded, cushioned look */
-    box-shadow:
-      inset 0 2px 4px rgba(255, 255, 255, 0.18),
-      inset 0 -6px 18px rgba(0, 0, 0, 0.35),
-      0 30px 60px rgba(3, 15, 45, 0.55),
-      0 8px 20px rgba(3, 15, 45, 0.4);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  /* subtle quilted button-tuft dots for a padded texture */
-  .stage::before {
+  /* Full-screen quilted "padded" texture + vignette */
+  body::before {
     content: "";
-    position: absolute;
-    inset: 14px;
-    border-radius: 20px;
+    position: fixed;
+    inset: 0;
     pointer-events: none;
-    background-image: radial-gradient(rgba(255, 255, 255, 0.12) 1.5px, transparent 1.6px);
-    background-size: 26px 26px;
-    opacity: 0.5;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.6px);
+    background-size: 30px 30px;
   }
-
-  h1 {
-    position: relative;
-    font-size: 1.9rem;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.35rem;
-    background: linear-gradient(90deg, #ffe58a, var(--accent));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  p.tag {
-    position: relative;
-    font-size: 0.95rem;
-    opacity: 0.8;
-    margin-bottom: 2.2rem;
-  }
-
-  /* Stage floor for the banana + its shadow */
-  .floor {
-    position: relative;
-    height: 230px;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-  }
-
-  .banana-shadow {
-    position: absolute;
-    bottom: 8px;
-    width: 130px;
-    height: 26px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.35);
-    filter: blur(6px);
-    animation: shadow-pulse 1.1s ease-in-out infinite;
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    box-shadow: inset 0 0 260px rgba(3, 15, 45, 0.75);
   }
 
   .banana {
-    width: 150px;
-    transform-origin: 50% 90%;
-    animation: dance 1.1s ease-in-out infinite;
-    filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.25));
+    position: relative;
+    height: 62vh;
+    max-height: 620px;
+    width: auto;
+    transform-origin: 50% 88%;
+    animation: dance 1.05s ease-in-out infinite;
+    filter: drop-shadow(0 24px 26px rgba(0, 0, 0, 0.4));
   }
 
-  /* The dance: bounce + sway + wiggle */
+  /* The dance: bounce + sway + squash & stretch */
   @keyframes dance {
-    0%   { transform: translateY(0)     rotate(-9deg) scale(1, 1); }
-    25%  { transform: translateY(-26px) rotate(6deg)  scale(0.97, 1.05); }
-    50%  { transform: translateY(0)     rotate(9deg)  scale(1.05, 0.95); }
-    75%  { transform: translateY(-26px) rotate(-6deg) scale(0.97, 1.05); }
-    100% { transform: translateY(0)     rotate(-9deg) scale(1, 1); }
-  }
-
-  @keyframes shadow-pulse {
-    0%, 100% { transform: scale(1);    opacity: 0.35; }
-    25%, 75% { transform: scale(0.7);  opacity: 0.2; }
-    50%      { transform: scale(1.05); opacity: 0.38; }
+    0%   { transform: translateY(0)     rotate(-8deg) scale(1, 1); }
+    25%  { transform: translateY(-6%)   rotate(7deg)  scale(0.97, 1.05); }
+    50%  { transform: translateY(0)     rotate(8deg)  scale(1.05, 0.95); }
+    75%  { transform: translateY(-6%)   rotate(-7deg) scale(0.97, 1.05); }
+    100% { transform: translateY(0)     rotate(-8deg) scale(1, 1); }
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .banana, .banana-shadow { animation: none; }
-  }
-
-  footer {
-    position: relative;
-    margin-top: 2.2rem;
-    font-size: 0.78rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    opacity: 0.55;
+    .banana { animation: none; }
   }
 </style>
 </head>
 <body>
-  <main class="stage">
-    <h1>telepeel</h1>
-    <p class="tag">a very professional dancing banana 🍌</p>
+  <!-- Hand-built plump SVG banana. Self-contained, no external assets. -->
+  <svg class="banana" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dancing banana">
+    <defs>
+      <linearGradient id="peel" x1="0.1" y1="0" x2="0.9" y2="1">
+        <stop offset="0%"  stop-color="#fff0a0" />
+        <stop offset="45%" stop-color="#ffd633" />
+        <stop offset="100%" stop-color="#f2b005" />
+      </linearGradient>
+      <linearGradient id="belly" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#fff6c8" />
+        <stop offset="100%" stop-color="#ffdf6b" />
+      </linearGradient>
+    </defs>
 
-    <div class="floor">
-      <div class="banana-shadow"></div>
+    <!-- Banana body: thick solid crescent (area between two arcs) -->
+    <path d="M60 118
+             C 82 212, 116 248, 150 248
+             C 184 248, 218 212, 240 118
+             C 236 138, 230 150, 222 158
+             C 206 186, 180 200, 150 200
+             C 120 200, 94 186, 78 158
+             C 70 150, 64 138, 60 118 Z"
+          fill="url(#peel)" stroke="#c9860a" stroke-width="4" stroke-linejoin="round" />
 
-      <!-- Hand-built SVG banana (free, self-contained, no external assets) -->
-      <svg class="banana" viewBox="0 0 200 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dancing banana">
-        <defs>
-          <linearGradient id="peel" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"  stop-color="#ffe66b" />
-            <stop offset="55%" stop-color="#ffd21f" />
-            <stop offset="100%" stop-color="#f2b705" />
-          </linearGradient>
-          <linearGradient id="shine" x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stop-color="#fff7cf" stop-opacity="0.9" />
-            <stop offset="100%" stop-color="#fff7cf" stop-opacity="0" />
-          </linearGradient>
-        </defs>
+    <!-- lighter belly highlight along the bottom edge -->
+    <path d="M92 178 C 110 218, 130 236, 150 236
+             C 170 236, 190 218, 208 178
+             C 190 206, 172 220, 150 220
+             C 128 220, 110 206, 92 178 Z"
+          fill="url(#belly)" opacity="0.8" />
 
-        <!-- Banana body -->
-        <path d="M60 22
-                 C 46 70, 40 130, 78 186
-                 C 100 218, 150 224, 168 200
-                 C 150 214, 108 206, 92 176
-                 C 66 128, 74 74, 92 34
-                 C 88 24, 72 16, 60 22 Z"
-              fill="url(#peel)" stroke="#c98f00" stroke-width="3" stroke-linejoin="round" />
+    <!-- ridge lines running the length -->
+    <path d="M150 240 C 150 232, 150 222, 150 214" fill="none" stroke="#e0a413" stroke-width="3" stroke-linecap="round" opacity="0.5"/>
+    <path d="M104 214 C 98 196, 92 176, 88 150" fill="none" stroke="#e0a413" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+    <path d="M196 214 C 202 196, 208 176, 212 150" fill="none" stroke="#e0a413" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
 
-        <!-- inner highlight -->
-        <path d="M70 40 C 58 90, 60 140, 90 180"
-              fill="none" stroke="url(#shine)" stroke-width="8" stroke-linecap="round" />
+    <!-- glossy shine near the top back -->
+    <path d="M84 150 C 96 176, 118 192, 142 196" fill="none" stroke="#fffbe6" stroke-width="7" stroke-linecap="round" opacity="0.7"/>
 
-        <!-- stem -->
-        <path d="M60 22 C 58 12, 66 8, 74 10 L 78 20"
-              fill="#7a5a1e" stroke="#5c4416" stroke-width="2" stroke-linejoin="round" />
+    <!-- left stem -->
+    <path d="M60 118 C 52 100, 56 82, 70 76 C 78 72, 86 76, 88 84 L 78 104 C 72 108, 66 112, 60 118 Z"
+          fill="#8a6a24" stroke="#5c4416" stroke-width="3" stroke-linejoin="round" />
 
-        <!-- brown tip -->
-        <path d="M160 202 c 10 4, 16 2, 12 10 c -6 6, -16 2, -18 -4 Z" fill="#8a5a12" />
+    <!-- right brown tip -->
+    <path d="M240 118 c 8 -8, 18 -8, 20 2 c 2 8, -6 16, -16 14 c -2 -6, -4 -12, -4 -16 Z" fill="#8a5a12" />
 
-        <!-- little face -->
-        <g>
-          <circle cx="96" cy="96"  r="6" fill="#3a2a05" />
-          <circle cx="120" cy="104" r="6" fill="#3a2a05" />
-          <circle cx="98" cy="94"  r="2" fill="#fff" />
-          <circle cx="122" cy="102" r="2" fill="#fff" />
-          <path d="M92 118 q 16 16, 34 6" fill="none" stroke="#3a2a05" stroke-width="4" stroke-linecap="round" />
-          <!-- cheeks -->
-          <circle cx="86" cy="112" r="5" fill="#ff9a6b" opacity="0.55" />
-          <circle cx="132" cy="118" r="5" fill="#ff9a6b" opacity="0.55" />
-        </g>
-      </svg>
-    </div>
-
-    <footer>🍌 keep peeling</footer>
-  </main>
+    <!-- cute face, sitting on the body -->
+    <g>
+      <ellipse cx="132" cy="196" rx="7" ry="8.5" fill="#3a2a05" />
+      <ellipse cx="168" cy="196" rx="7" ry="8.5" fill="#3a2a05" />
+      <circle cx="134" cy="193" r="2.4" fill="#fff" />
+      <circle cx="170" cy="193" r="2.4" fill="#fff" />
+      <path d="M130 216 q 20 20, 40 0" fill="none" stroke="#3a2a05" stroke-width="5" stroke-linecap="round" />
+      <circle cx="114" cy="210" r="7" fill="#ff9a6b" opacity="0.5" />
+      <circle cx="186" cy="210" r="7" fill="#ff9a6b" opacity="0.5" />
+    </g>
+  </svg>
 </body>
 </html>
